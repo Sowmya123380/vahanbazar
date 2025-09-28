@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vahan Bazar - Two Wheeler Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+            --secondary-gradient: linear-gradient(to right, #3498db, #2980b9);
+            --accent-color: #2980b9;
+            --dark-text: #2c3e50;
+            --light-text: #7f8c8d;
+            --background: #f0f5ff;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --ai-gradient: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Border */
+        .top-border {
+            height: 6px;
+            background: var(--primary-gradient);
+            width: 100%;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--card-bg);
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            width: 55px;
+            height: 55px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .logo-image i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 22px;
+        }
+
+        nav a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #1e3c72;
+            background-color: rgba(30, 60, 114, 0.1);
+        }
+
+        nav a.active {
+            color: white;
+            background: var(--primary-gradient);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--dark-text);
+            border: 1px solid #ddd;
+        }
+
+        .btn-signup {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(42, 82, 152, 0.8)), url('https://images.unsplash.com/photo-1620749330609-8aad316a341e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            margin: 25px 0;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h2 {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            opacity: 0.9;
+        }
+
+        .btn-hero {
+            background: white;
+            color: #1e3c72;
+            padding: 10px 28px;
+            font-size: 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        /* AI Detector Section */
+        .ai-detector {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 35px 0;
+            text-align: center;
+        }
+
+        .ai-detector-header {
+            margin-bottom: 25px;
+        }
+
+        .ai-detector-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ai-detector-title i {
+            color: #ff6b6b;
+        }
+
+        .ai-detector-subtitle {
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .detector-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .upload-area {
+            width: 100%;
+            max-width: 500px;
+            border: 2px dashed #ddd;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-color);
+            background-color: #f0f8ff;
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+
+        .upload-area p {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .detector-result {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            display: none;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .result-confidence {
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .confidence-high {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        .confidence-medium {
+            background-color: #feca57;
+            color: white;
+        }
+
+        .confidence-low {
+            background-color: #48dbfb;
+            color: white;
+        }
+
+        .result-details {
+            text-align: left;
+        }
+
+        .result-details p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .detector-btn {
+            background: var(--ai-gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .detector-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 35px 0;
+        }
+
+        .search-title {
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-title i {
+            color: var(--accent-color);
+        }
+
+        .search-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: white;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-box select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+            pointer-events: none;
+        }
+
+        .filter-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .filter-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Vehicle Listings */
+        .listings-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            padding-bottom: 8px;
+            border-bottom: 3px solid;
+            border-image: var(--primary-gradient) 1;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .vehicle-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .vehicle-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .vehicle-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .vehicle-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .vehicle-details {
+            padding: 18px;
+        }
+
+        .vehicle-title {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            color: var(--dark-text);
+            font-weight: 600;
+        }
+
+        .vehicle-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+
+        .vehicle-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .view-details {
+            display: block;
+            text-align: center;
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .view-details:hover {
+            background: linear-gradient(to right, #2980b9, #21618c);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-text);
+            color: white;
+            padding: 45px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 18px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 45px;
+            height: 3px;
+            background: var(--primary-gradient);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #34495e;
+            font-size: 0.85rem;
+            color: #bdc3c7;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-container {
+                grid-template-columns: 1fr;
+            }
+
+            .vehicle-listings {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+
+            .hero {
+                padding: 45px 20px;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Border -->
+    <div class="top-border"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-image">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Vahan Bazar</h1>
+                        <p>Your Two Wheeler Marketplace</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="buy">Buy</a></li>
+                        <li><a href="#" class="nav-link" data-page="sell">Sell</a></li>
+                        <li><a href="#" class="nav-link" data-page="compare">Compare</a></li>
+                        <li><a href="#" class="nav-link" data-page="ai-detector">AI Detector</a></li>
+                        <li><a href="#" class="nav-link" data-page="finance">Finance</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-login">Login</button>
+                    <button class="btn btn-signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home Page -->
+        <div id="home" class="page-content active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2>Find Your Perfect Two-Wheeler</h2>
+                <p>Discover the best deals on scooters, motorcycles, and more from trusted sellers across the country.</p>
+                <button class="btn btn-hero">Start Browsing</button>
+            </section>
+
+            <!-- Search Section -->
+            <section class="search-section">
+                <h2 class="search-title"><i class="fas fa-search"></i> Find Your Ride</h2>
+                <div class="search-container">
+                    <div class="search-box">
+                        <select id="vehicle-type">
+                            <option value="" selected disabled>Select Vehicle Type</option>
+                            <option value="scooter">Scooter</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="sports-bike">Sports Bike</option>
+                            <option value="cruiser">Cruiser</option>
+                            <option value="off-road">Off-Road</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div class="search-box">
+                        <select id="fuel-type">
+                            <option value="" selected disabled>Select Fuel Type</option>
+                            <option value="petrol">Petrol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="electric">Electric</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div class="search-box">
+                        <select id="brand">
+                            <option value="" selected disabled>Select Brand</option>
+                            <option value="honda">Honda</option>
+                            <option value="yamaha">Yamaha</option>
+                            <option value="bajaj">Bajaj</option>
+                            <option value="tvs">TVS</option>
+                            <option value="hero">Hero</option>
+                            <option value="suzuki">Suzuki</option>
+                            <option value="royal-enfield">Royal Enfield</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vehicle Listings -->
+            <section class="listings-section">
+                <h2 class="section-title">Featured Two-Wheelers</h2>
+                <div class="vehicle-listings">
+                    <!-- Honda Models -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                            <span class="vehicle-badge">Honda</span>
+                        </div>
+                        <div class="vehicle-details">
+                            <h3 class="vehicle-title">Honda Activa 6G</h3>
+                            <div class="vehicle-specs">
+                                <span>Scooter</span>
+                                <span>Petrol</span>
+                            </div>
+                            <div class="vehicle-price">₹75,000</div>
+                            <a href="#" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="vehicle-card">
+                        <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                            <span class="vehicle-badge">Honda</span>
+                        </div>
+                        <div class="vehicle-details">
+                            <h3 class="vehicle-title">Honda CB Shine</h3>
+                            <div class="vehicle-specs">
+                                <span>Motorcycle</span>
+                                <span>Petrol</span>
+                            </div>
+                            <div class="vehicle-price">₹82,000</div>
+                            <a href="#" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Bajaj Models -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                            <span class="vehicle-badge">Bajaj</span>
+                        </div>
+                        <div class="vehicle-details">
+                            <h3 class="vehicle-title">Bajaj Pulsar NS200</h3>
+                            <div class="vehicle-specs">
+                                <span>Sports Bike</span>
+                                <span>Petrol</span>
+                            </div>
+                            <div class="vehicle-price">₹1,40,000</div>
+                            <a href="#" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="vehicle-card">
+                        <div class="vehicle-image" style="background-image: url('https://images.unsplash.com/photo-1620749330609-8aad316a341e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80');">
+                            <span class="vehicle-badge">Bajaj</span>
+                        </div>
+                        <div class="vehicle-details">
+                            <h3 class="vehicle-title">Bajaj Dominar 400</h3>
+                            <div class="vehicle-specs">
+                                <span>Cruiser</span>
+                                <span>Petrol</span>
+                            </div>
+                            <div class="vehicle-price">₹2,10,000</div>
+                            <a href="#" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- AI Detector Page -->
+        <div id="ai-detector" class="page-content">
+            <section class="ai-detector">
+                <div class="ai-detector-header">
+                    <h2 class="ai-detector-title"><i class="fas fa-robot"></i> AI-Generated Photo Detector</h2>
+                    <p class="ai-detector-subtitle">Upload a photo to check if it's AI-generated or authentic. Protect yourself from fake listings with our advanced detection technology.</p>
+                </div>
+                
+                <div class="detector-container">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Photo to Analyze</h3>
+                        <p>Drag & drop or click to browse</p>
+                        <p>Supports JPG, PNG, WEBP (Max 5MB)</p>
+                        <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="detector-result" id="detectorResult">
+                        <div class="result-header">
+                            <span class="result-title">Analysis Result</span>
+                            <span class="result-confidence confidence-high" id="confidenceLevel">High Confidence</span>
+                        </div>
+                        <div class="result-details">
+                            <p id="resultText">This image appears to be AI-generated with 92% confidence.</p>
+                            <p id="analysisDetails">Our analysis detected patterns consistent with generative AI models including uniform lighting, unrealistic textures, and inconsistent details.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="detector-btn" id="analyzeBtn" disabled>Analyze Photo</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Other Pages (Placeholders) -->
+        <div id="buy" class="page-content">
+            <section class="hero">
+                <h2>Buy Your Dream Two-Wheeler</h2>
+                <p>Browse thousands of verified listings from trusted sellers.</p>
+            </section>
+        </div>
+
+        <div id="sell" class="page-content">
+            <section class="hero">
+                <h2>Sell Your Two-Wheeler</h2>
+                <p>List your vehicle and reach thousands of potential buyers.</p>
+            </section>
+        </div>
+
+        <div id="compare" class="page-content">
+            <section class="hero">
+                <h2>Compare Two-Wheelers</h2>
+                <p>Side-by-side comparison to make the best choice.</p>
+            </section>
+        </div>
+
+        <div id="finance" class="page-content">
+            <section class="hero">
+                <h2>Finance Your Purchase</h2>
+                <p>Easy EMI options and loan facilities available.</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vahan Bazar</h3>
+                    <p>Your trusted marketplace for buying and selling two-wheelers. Find the perfect bike or scooter that matches your needs and budget.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="buy">Buy Vehicle</a></li>
+                        <li><a href="#" class="nav-link" data-page="sell">Sell Vehicle</a></li>
+                        <li><a href="#" class="nav-link" data-page="compare">Compare Vehicles</a></li>
+                        <li><a href="#" class="nav-link" data-page="ai-detector">AI Photo Detector</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Bike Street, Motor City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@vahanbazar.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Vahan Bazar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all pages
+                document.querySelectorAll('.page-content').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // AI Detector Functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const photoUpload = document.getElementById('photoUpload');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const detectorResult = document.getElementById('detectorResult');
+        const confidenceLevel = document.getElementById('confidenceLevel');
+        const resultText = document.getElementById('resultText');
+        const analysisDetails = document.getElementById('analysisDetails');
+
+        uploadArea.addEventListener('click', () => {
+            photoUpload.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#3498db';
+            uploadArea.style.backgroundColor = '#f0f8ff';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = '#f8f9fa';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = '#f8f9fa';
+            
+            if (e.dataTransfer.files.length > 0) {
+                handleImageUpload(e.dataTransfer.files[0]);
+            }
+        });
+
+        photoUpload.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleImageUpload(e.target.files[0]);
+            }
+        });
+
+        function handleImageUpload(file) {
+            if (!file.type.match('image.*')) {
+                alert('Please upload an image file (JPG, PNG, WEBP).');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File size must be less than 5MB.');
+                return;
+            }
+            
+            // Display file name
+            uploadArea.querySelector('h3').textContent = file.name;
+            uploadArea.querySelector('p').textContent = 'Click to change photo';
+            
+            // Enable analyze button
+            analyzeBtn.disabled = false;
+            
+            // Store file for analysis
+            analyzeBtn.file = file;
+        }
+
+        analyzeBtn.addEventListener('click', () => {
+            if (!analyzeBtn.file) return;
+            
+            // Show loading state
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            analyzeBtn.disabled = true;
+            
+            // Simulate AI analysis (in a real app, this would call an API)
+            setTimeout(() => {
+                // Random result for demo
+                const isAIGenerated = Math.random() > 0.5;
+                const confidence = Math.floor(Math.random() * 40) + 60; // 60-99%
+                
+                // Update result display
+                detectorResult.style.display = 'block';
+                
+                if (isAIGenerated) {
+                    resultText.textContent = `This image appears to be AI-generated with ${confidence}% confidence.`;
+                    analysisDetails.textContent = 'Our analysis detected patterns consistent with generative AI models including uniform lighting, unrealistic textures, and inconsistent details.';
+                    
+                    if (confidence > 80) {
+                        confidenceLevel.textContent = 'High Confidence';
+                        confidenceLevel.className = 'result-confidence confidence-high';
+                    } else if (confidence > 60) {
+                        confidenceLevel.textContent = 'Medium Confidence';
+                        confidenceLevel.className = 'result-confidence confidence-medium';
+                    } else {
+                        confidenceLevel.textContent = 'Low Confidence';
+                        confidenceLevel.className = 'result-confidence confidence-low';
+                    }
+                } else {
+                    resultText.textContent = `This image appears to be authentic with ${confidence}% confidence.`;
+                    analysisDetails.textContent = 'Our analysis found natural variations in lighting, realistic textures, and consistent details typical of photographs.';
+                    confidenceLevel.textContent = 'Authentic';
+                    confidenceLevel.className = 'result-confidence confidence-low';
+                }
+                
+                // Reset button
+                analyzeBtn.innerHTML = 'Analyze Photo';
+                analyzeBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Hero button
+        document.querySelector('.btn-hero').addEventListener('click', function() {
+            document.querySelector('.search-section').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
